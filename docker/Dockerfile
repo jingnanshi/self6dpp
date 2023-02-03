@@ -13,7 +13,18 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86
 RUN dpkg -i cuda-keyring_1.0-1_all.deb
 
 RUN apt-get update && apt-get install -y \
-	python3-opencv ca-certificates python3-dev git wget sudo ninja-build libjpeg-dev zlib1g-dev libopenexr-dev \
+    python3.7 python3.7-dev python3.7-distutils \
+    python3-opencv ca-certificates git wget sudo ninja-build
+
+# Make python3 available for python3.7
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 2
+RUN update-alternatives --config python3
+# Make python available for python3.7
+RUN ln -sv /usr/bin/python3.7 /usr/bin/python
+
+RUN apt-get update && apt-get install -y \
+	libjpeg-dev zlib1g-dev libopenexr-dev \
 	openexr libglfw3-dev libglfw3 libglew-dev libassimp-dev libnuma-dev clang curl autoconf build-essential libtool \
 	libeigen3-dev libgoogle-glog-dev libsuitesparse-dev libatlas-base-dev
 RUN rm /usr/bin/python && ln -sv /usr/bin/python3 /usr/bin/python
@@ -26,15 +37,18 @@ USER appuser
 WORKDIR /home/appuser
 
 ENV PATH="/home/appuser/.local/bin:${PATH}"
-RUN wget https://bootstrap.pypa.io/pip/3.6/get-pip.py && \
-	python3 get-pip.py --user && \
+RUN wget https://bootstrap.pypa.io/pip/get-pip.py && \
+	python3.7 get-pip.py --user && \
 	rm get-pip.py
+
+# Important! Otherwise, it uses existing numpy from host-modules which throws error
+RUN pip install --user numpy==1.20.3
 
 # install dependencies
 # See https://pytorch.org/ for other options if you use a different version of CUDA
 RUN sudo apt-get install -y libprotobuf-dev protobuf-compiler
 RUN pip install --user tensorboard cmake protobuf-compiler   # cmake from apt-get is too old
-RUN pip install --user onnx   # cmake from apt-get is too old
+#RUN pip install --user onnx   # cmake from apt-get is too old
 RUN pip install --user torch==1.10 torchvision==0.11.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
 
 RUN pip install --user 'git+https://github.com/facebookresearch/fvcore'
