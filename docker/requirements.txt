@@ -5,7 +5,7 @@ docformatter
 setproctitle
 meshplex
 OpenEXR
-"vispy>=0.6.4"
+vispy>=0.6.4
 tabulate
 pytest-runner
 pytest
@@ -16,7 +16,7 @@ mmcv-full
 imagecorruptions
 pyassimp==4.1.3  # 4.1.4 will cause egl_renderer SegmentFault
 pypng
-"imgaug>=0.4.0"
+imgaug>=0.4.0
 albumentations
 transforms3d
 torchvision
@@ -27,8 +27,10 @@ einops
 pytorch3d
 timm  # pytorch-image-models
 glfw
-imageio imageio-ffmpeg
-PyOpenGL PyOpenGL_accelerate  # >=3.1.5
+imageio 
+imageio-ffmpeg
+PyOpenGL 
+PyOpenGL_accelerate  # >=3.1.5
 chardet
 thop  # https://github.com/Lyken17/pytorch-OpCounter
 loguru
