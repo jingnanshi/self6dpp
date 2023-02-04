@@ -78,3 +78,8 @@ ENV FVCORE_CACHE="/tmp"
 COPY ./requirements.txt /home/appuser 
 WORKDIR /home/appuser
 RUN pip install -r requirements.txt
+
+# clone self6d
+RUN pip install --user Cython
+#RUN git clone https://github.com/jingnanshi/self6dpp.git
+#RUN cd self6dpp && sh scripts/compile_all.sh
