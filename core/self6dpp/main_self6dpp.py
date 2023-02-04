@@ -34,7 +34,7 @@ from lib.utils.time_utils import get_time_str
 import ref
 
 from core.self6dpp.datasets.dataset_factory import register_datasets_in_cfg
-from core.self6dpp.engine.self_engine_utils import get_DIBR_models_renderer, get_dibr_models_renderer
+from core.self6dpp.engine.self_engine_utils import get_dibr_models_renderer
 from core.self6dpp.engine.self_engine import do_test, do_train, do_save_results
 
 from core.self6dpp.models import GDRN, GDRN_double_mask  # noqa
