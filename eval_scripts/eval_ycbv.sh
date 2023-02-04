@@ -1,0 +1,1 @@
+core/self6dpp/test_self6dpp.sh ./configs/self6dpp-gt-test/ssYCBV/ss_mlBCE_MaskFull_PredDouble_PBR05_woCenter_edgeLower_refinePM10/ss_mlBCE_MaskFull_PredDouble_PBR05_woCenter_edgeLower_refinePM10_01_02MasterChefCan.py 0 ./datasets/output/self6dpp/ssYCBV/ss_mlBCE_MaskFull_PredDouble_PBR05_woCenter_edgeLower_refinePM10/01_02MasterChefCan/model_final_wo_optim-84d07f37.pth
